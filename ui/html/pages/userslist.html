@@ -1,0 +1,20 @@
+{{define "title"}}Users List{{end}} {{define "main"}}
+<h2>Users List</h2>
+{{if .Users}}
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Created</th>
+  </tr>
+  {{range .Users}}
+  <tr>
+    <td>{{.Name}}</td>
+    <td>{{.Email}}</td>
+    <td>{{.Created}}</td>
+  </tr>
+  {{end}}
+</table>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}} {{end}}

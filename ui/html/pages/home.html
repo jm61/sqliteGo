@@ -1,0 +1,18 @@
+{{define "title"}}Home{{end}} {{define "main"}}
+<h2>Artists</h2>
+{{if .Artists}}
+<table>
+  <tr>
+    <!-- <th>ID</th> -->
+    <th>Name</th>
+  </tr>
+  {{range .Artists}}
+  <tr>
+    <!-- <td>{{.ArtistId}}</td> -->
+    <td>{{.Name}}</td>
+  </tr>
+  {{end}}
+</table>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}} {{end}}

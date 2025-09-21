@@ -1,0 +1,24 @@
+{{define "title"}}Employees List{{end}} {{define "main"}}
+<h2>Employees</h2>
+{{if .Employees}}
+<table>
+  <tr>
+    <th>Last Name</th>
+    <th>First Name</th>
+    <th>Title</th>
+    <th>City</th>
+    <th>Email</th>
+  </tr>
+  {{range .Employees}}
+  <tr>
+    <td>{{.LastName}}</td>
+    <td>{{.FirstName}}</td>
+    <td>{{.Title}}</td>
+    <td>{{.City}}</td>
+    <td>{{.Email}}</td>
+  </tr>
+  {{end}}
+</table>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}} {{end}}
