@@ -24,6 +24,8 @@ type userLoginForm struct {
 	validator.Validator `form:"-"`
 }
 
+var albums []models.Album
+
 func (app *application) usersList(w http.ResponseWriter, r *http.Request) {
 	users, err := app.users.List()
 	if err != nil {
@@ -50,17 +52,8 @@ func (app *application) employeesList(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) home(w http.ResponseWriter, r *http.Request) {
-	/* artists, err := app.artists.Latest()
-	if err != nil {
-		log.Print(err.Error())
-		app.serverError(w, r, err)
-		return
-	} */
-
-	//fmt.Fprintln(w, artists)
-
 	data := app.newTemplateData(r)
-	data.Albums = nil
+	data.Albums = albums
 	app.render(w, r, http.StatusOK, "search.html", data)
 }
 
@@ -104,7 +97,7 @@ func (app *application) submitHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Search for artist: %s and ArtistID: %s\n", artist, artistId)
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 
-	albums, _ := app.albums.ListAlbums(artistId)
+	albums, _ = app.albums.ListAlbums(artistId)
 	fmt.Printf("Albums for artist %v: \n", albums)
 }
 

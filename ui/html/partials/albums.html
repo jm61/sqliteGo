@@ -1,0 +1,20 @@
+{{define "title"}}Albums List{{end}} {{define "albums"}}
+<h2>Albums List</h2>
+{{if .Albums}}
+<table>
+  <tr>
+    <th>Album Id</th>
+    <th>Title</th>
+    <th>Artist Id</th>
+  </tr>
+  {{range .Albums}}
+  <tr>
+    <td>{{.AlbumId}}</td>
+    <td>{{.Title}}</td>
+    <td>{{.ArtistId}}</td>
+  </tr>
+  {{end}}
+</table>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}} {{end}}
