@@ -1,11 +1,11 @@
 package main
 
 import (
+	"chinook/internal/models"
+	"chinook/internal/validator"
 	"encoding/json"
 	"errors"
 	"fmt"
-	"letsGo/internal/models"
-	"letsGo/internal/validator"
 	"log"
 	"net/http"
 	"strings"
@@ -97,8 +97,8 @@ func (app *application) submitHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Search for artist: %s and ArtistID: %s\n", artist, artistId)
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 
-	albums, _ = app.albums.ListAlbums(artistId)
-	fmt.Printf("Albums for artist %v: \n", albums)
+	albums, _ = app.albums.ListAlbums(artistId, artist)
+	fmt.Printf("Albums for artist %s %v: \n", artist, albums)
 }
 
 func findKeyByValue(m map[string]string, targetValue string) (string, bool) {

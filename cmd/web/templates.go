@@ -1,8 +1,8 @@
 package main
 
 import (
+	"chinook/internal/models"
 	"html/template"
-	"letsGo/internal/models"
 	"path/filepath"
 )
 
@@ -14,6 +14,7 @@ type templateData struct {
 	Form            any
 	Flash           string
 	IsAuthenticated bool
+	Artist          string
 }
 
 func newTemplateCache() (map[string]*template.Template, error) {

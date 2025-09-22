@@ -1,4 +1,4 @@
-module letsGo
+module chinook
 
 go 1.25.1
 

@@ -1,13 +1,13 @@
 package main
 
 import (
+	"chinook/internal/models"
 	"crypto/tls"
 	"database/sql"
 	"encoding/csv"
 	"flag"
 	"fmt"
 	"html/template"
-	"letsGo/internal/models"
 	"log/slog"
 	"net/http"
 	"os"

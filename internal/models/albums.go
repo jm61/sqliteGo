@@ -11,13 +11,14 @@ type Album struct {
 	AlbumId  int
 	Title    string
 	ArtistId int
+	Artist   string
 }
 
 type AlbumModel struct {
 	DB *sql.DB
 }
 
-func (m *AlbumModel) ListAlbums(artistId string) ([]Album, error) {
+func (m *AlbumModel) ListAlbums(artistId, artist string) ([]Album, error) {
 	aId, _ := strconv.Atoi(artistId)
 	rows, err := m.DB.Query("select AlbumId, Title, ArtistId from albums where ArtistId = ?", aId)
 	if err != nil {
@@ -29,7 +30,7 @@ func (m *AlbumModel) ListAlbums(artistId string) ([]Album, error) {
 
 	for rows.Next() {
 		var a Album
-
+		a.Artist = artist
 		err = rows.Scan(&a.AlbumId, &a.Title, &a.ArtistId)
 		if err != nil {
 			return nil, err
@@ -40,5 +41,6 @@ func (m *AlbumModel) ListAlbums(artistId string) ([]Album, error) {
 	if err = rows.Err(); err != nil {
 		return nil, err
 	}
+
 	return al, err
 }

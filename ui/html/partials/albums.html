@@ -2,12 +2,15 @@
 <h2>Albums List</h2>
 {{if .Albums}}
 <table>
+  {{ $first := true }}
   <tr>
     <th>Album Id</th>
     <th>Title</th>
     <th>Artist Id</th>
   </tr>
-  {{range .Albums}}
+  {{range .Albums}} {{ if $first}} {{with .Artist}}
+  <div class="flash">{{.}}</div>
+  {{end}}{{ $first = false }}{{end}}
   <tr>
     <td>{{.AlbumId}}</td>
     <td>{{.Title}}</td>
