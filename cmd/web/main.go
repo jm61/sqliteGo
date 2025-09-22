@@ -20,8 +20,7 @@ import (
 )
 
 type application struct {
-	logger *slog.Logger
-	//snippets       *models.SnippetModel
+	logger         *slog.Logger
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder
 	sessionManager *scs.SessionManager
@@ -33,8 +32,6 @@ type application struct {
 var dict = []string{}
 var records [][]string
 var dataMap (map[string]string)
-
-//var db *sql.DB
 
 func main() {
 	addr := flag.String("addr", ":8080", "HTTP network address (default is 8080), port must start at 1024")

@@ -7,8 +7,6 @@ import (
 )
 
 type templateData struct {
-	//Snippet         models.Snippet
-	//Snippets        []models.Snippet
 	Users           []models.User
 	Employees       []models.Employee
 	Albums          []models.Album

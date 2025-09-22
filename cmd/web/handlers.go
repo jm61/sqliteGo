@@ -172,7 +172,6 @@ func (app *application) userLoginPost(w http.ResponseWriter, r *http.Request) {
 	// Add the ID of the current user to the session, so that they are now
 	// 'logged in'.
 	app.sessionManager.Put(r.Context(), "authenticatedUserID", id)
-	// Redirect the user to the create snippet page.
 	//email := "maria@g.com"
 	x := strings.Split(form.Email, "@")
 	name := strings.ToUpper(x[0])
@@ -242,35 +241,3 @@ func (app *application) userLogoutPost(w http.ResponseWriter, r *http.Request) {
 	// Redirect the user to the application home page.
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
-
-/* func (app *application) snippetView(w http.ResponseWriter, r *http.Request) {
-	id, err := strconv.Atoi(r.PathValue("id"))
-	if id <= 0 || err != nil {
-		http.NotFound(w, r)
-		return
-	}
-
-	snippet, err := app.snippets.Get(id)
-	if err != nil {
-		if errors.Is(err, models.ErrNoRecord) {
-			http.NotFound(w, r)
-		} else {
-			app.serverError(w, r, err)
-		}
-		return
-	}
-
-	data := app.newTemplateData(r)
-	data.Snippet = snippet
-
-	app.render(w, r, http.StatusOK, "view.html", data)
-}
-
-func (app *application) snippetCreate(w http.ResponseWriter, r *http.Request) {
-	data := app.newTemplateData(r)
-
-	data.Form = snippetCreateForm{
-		Expires: 7,
-	}
-	app.render(w, r, http.StatusOK, "create.html", data)
-}*/

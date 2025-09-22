@@ -59,7 +59,6 @@ func (m *UserModel) List() ([]User, error) {
 	}
 	fmt.Println("Sessions Number: ", count)
 
-	// If everything went OK then return the Snippets slice.
 	return users, nil
 }
 

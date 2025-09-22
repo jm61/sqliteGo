@@ -18,15 +18,9 @@ func (app *application) routes() http.Handler {
 
 	mux.Handle("GET /employees/list", app.sessionManager.LoadAndSave(http.HandlerFunc(app.employeesList)))
 
-	//mux.Handle("GET /snippet/view/{id}", app.sessionManager.LoadAndSave(http.HandlerFunc(app.snippetView)))
-
-	//mux.Handle("GET /snippet/create", app.sessionManager.LoadAndSave(app.requireAuthentication(http.HandlerFunc(app.snippetCreate))))
-
 	mux.Handle("GET /user/signup", app.sessionManager.LoadAndSave(http.HandlerFunc(app.userSignup)))
 
 	mux.Handle("GET /user/login", app.sessionManager.LoadAndSave(http.HandlerFunc(app.userLogin)))
-
-	//mux.Handle("POST /snippet/create", app.sessionManager.LoadAndSave(app.requireAuthentication(http.HandlerFunc(app.snippetCreatePost))))
 
 	mux.Handle("POST /user/login", app.sessionManager.LoadAndSave(http.HandlerFunc(app.userLoginPost)))
 
