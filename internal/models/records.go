@@ -8,7 +8,7 @@ import (
 
 type Record struct {
 	Name         string
-	Composer     string
+	Composer     sql.NullString
 	Milliseconds int
 	UnitPrice    float32
 }
@@ -33,6 +33,15 @@ func (m *RecordModel) List(albumId int) ([]Record, error) {
 		if err != nil {
 			return nil, err
 		}
+
+		var c string
+		_ = c
+		c = r.Composer.String
+		if r.Composer.Valid {
+		} else {
+			r.Composer.String = "N/A"
+		}
+
 		rec = append(rec, r)
 	}
 

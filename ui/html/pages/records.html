@@ -11,7 +11,7 @@
   {{range .Records}}
   <tr>
     <td>{{.Name}}</td>
-    <td>{{.Composer}}</td>
+    <td>{{.Composer.String}}</td>
     <td>{{div .Milliseconds $b}}</td>
     <td>{{.UnitPrice}}</td>
   </tr>

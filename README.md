@@ -13,7 +13,7 @@ I converted the mySQL part to SQLite and added the [chinook db](https://www.sqli
 
 - You can search on an artists table the albums referenced to this artist.
 - The artists.csv file is a CSV dump of the artists table of the DB.
-- You must generate your own cert/key pem files to start in https.
+- You must generate your own cert/key pem files in tls dir to start in https.
 
 ### Initial repo
 

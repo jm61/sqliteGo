@@ -98,6 +98,7 @@ func main() {
 
 	logger.Info("starting server", "addr", srv.Addr)
 	fmt.Printf("https://127.0.0.1%s\n", srv.Addr)
+	// Don't forget to generate your own .pem files!
 	err = srv.ListenAndServeTLS("./tls/cert.pem", "./tls/key.pem")
 	logger.Error(err.Error())
 	os.Exit(1)
