@@ -1,2 +1,4 @@
 git_token.txt
 table.txt
+tls/cert.perm
+tls/key.perm

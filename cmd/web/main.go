@@ -27,6 +27,7 @@ type application struct {
 	users          *models.UserModel
 	employees      *models.EmployeeModel
 	albums         *models.AlbumModel
+	records        *models.RecordModel
 }
 
 var dict = []string{}
@@ -79,6 +80,7 @@ func main() {
 		users:          &models.UserModel{DB: db},
 		employees:      &models.EmployeeModel{DB: db},
 		albums:         &models.AlbumModel{DB: db},
+		records:        &models.RecordModel{DB: db},
 	}
 
 	tlsConfig := &tls.Config{

@@ -16,6 +16,8 @@ func (app *application) routes() http.Handler {
 
 	mux.Handle("POST /submit", app.sessionManager.LoadAndSave(http.HandlerFunc(app.submitHandler)))
 
+	mux.Handle("GET /records/{id}", app.sessionManager.LoadAndSave(http.HandlerFunc(app.recordHandler)))
+
 	mux.Handle("GET /employees/list", app.sessionManager.LoadAndSave(http.HandlerFunc(app.employeesList)))
 
 	mux.Handle("GET /user/signup", app.sessionManager.LoadAndSave(http.HandlerFunc(app.userSignup)))

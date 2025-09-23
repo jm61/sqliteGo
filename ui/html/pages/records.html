@@ -1,0 +1,22 @@
+{{define "title"}}Tracks List{{end}} {{define "main"}}
+<h2>Tracks List</h2>
+{{if .Records}} {{$b := 1000}}
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Composer</th>
+    <th>Duration</th>
+    <th>Price</th>
+  </tr>
+  {{range .Records}}
+  <tr>
+    <td>{{.Name}}</td>
+    <td>{{.Composer}}</td>
+    <td>{{div .Milliseconds $b}}</td>
+    <td>{{.UnitPrice}}</td>
+  </tr>
+  {{end}}
+</table>
+{{else}}
+<p>There's nothing to see here... yet!</p>
+{{end}} {{end}}

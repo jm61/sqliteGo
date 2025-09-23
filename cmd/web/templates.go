@@ -10,6 +10,7 @@ type templateData struct {
 	Users           []models.User
 	Employees       []models.Employee
 	Albums          []models.Album
+	Records         []models.Record
 	CurrentYear     int
 	Form            any
 	Flash           string
@@ -20,6 +21,16 @@ type templateData struct {
 func newTemplateCache() (map[string]*template.Template, error) {
 	// Initialize a new map to act as the cache.
 	cache := map[string]*template.Template{}
+
+	// template function to convert milliseconds column of tracks table in seconds
+	funcMap := template.FuncMap{
+		"div": func(a, b int) int {
+			if b == 0 {
+				return 0 // Handle division by zero
+			}
+			return a / b
+		},
+	}
 
 	pages, err := filepath.Glob("./ui/html/pages/*.html")
 	if err != nil {
@@ -37,12 +48,12 @@ func newTemplateCache() (map[string]*template.Template, error) {
 			"./ui/html/partials/albums.html",
 			page,
 		}
-		// Parse the files into a template set.
-		ts, err := template.ParseFiles(files...)
+		// Parse the files into a template set to include the funcmap.
+		ts, err := template.New("test").Funcs(funcMap).ParseFiles(files...)
+		//ts, err := template.ParseFiles(files...)
 		if err != nil {
 			return nil, err
 		}
-
 		cache[name] = ts
 	}
 	// Return the map.

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 )
 
@@ -38,6 +39,7 @@ func (app *application) usersList(w http.ResponseWriter, r *http.Request) {
 
 	app.render(w, r, http.StatusOK, "userslist.html", data)
 }
+
 func (app *application) employeesList(w http.ResponseWriter, r *http.Request) {
 	employees, err := app.employees.List()
 	if err != nil {
@@ -55,6 +57,22 @@ func (app *application) home(w http.ResponseWriter, r *http.Request) {
 	data := app.newTemplateData(r)
 	data.Albums = albums
 	app.render(w, r, http.StatusOK, "search.html", data)
+}
+
+func (app *application) recordHandler(w http.ResponseWriter, r *http.Request) {
+	id, err := strconv.Atoi(r.PathValue("id"))
+	fmt.Println(id)
+	records, err := app.records.List(id)
+	if err != nil {
+		log.Print(err.Error())
+		app.serverError(w, r, err)
+		return
+	}
+
+	data := app.newTemplateData(r)
+	data.Records = records
+	app.render(w, r, http.StatusOK, "records.html", data)
+	//fmt.Fprintln(w, records)
 }
 
 func (app *application) search(w http.ResponseWriter, r *http.Request) {
@@ -98,7 +116,7 @@ func (app *application) submitHandler(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/", http.StatusSeeOther)
 
 	albums, _ = app.albums.ListAlbums(artistId, artist)
-	fmt.Printf("Albums for artist %s %v: \n", artist, albums)
+	//fmt.Printf("Albums for artist %s %v: \n", artist, albums)
 }
 
 func findKeyByValue(m map[string]string, targetValue string) (string, bool) {
